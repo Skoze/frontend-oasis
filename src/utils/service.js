@@ -5,11 +5,14 @@ import loading from './loading';
 
 let config = {
   withCredentials: true, // Check cross-site Access-Control
+  baseURL: process.env.VUE_APP_AJAX_BASE_URL
+    ? process.env.VUE_APP_AJAX_BASE_URL
+    : '', //provides base url
 };
 
 const service = axios.create(config);
 service.interceptors.request.use(
-  function(config) {
+  function (config) {
     if (!config.async) {
       loading.show();
     }
@@ -19,7 +22,7 @@ service.interceptors.request.use(
     }
     return config;
   },
-  function(error) {
+  function (error) {
     // Do something with request error
     return Promise.reject(error);
   }
@@ -27,7 +30,7 @@ service.interceptors.request.use(
 
 // Add a response interceptor
 service.interceptors.response.use(
-  function(response) {
+  function (response) {
     // Do something with response data
     if (!response.config.async) {
       loading.hide();
@@ -42,7 +45,7 @@ service.interceptors.response.use(
     }
     return Promise.reject(response);
   },
-  function(error) {
+  function (error) {
     // Do something with response error
     if (!error.config.async) {
       loading.hide();
