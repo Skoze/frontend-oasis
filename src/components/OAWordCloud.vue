@@ -3,7 +3,7 @@
     <g
       ref="wordCloud"
       class="container"
-      :transform="`translate(${size[0] / 2},${size[1] / 2})scale(${scale})`"
+      :transform="`translate(${size[0] / 2},${size[1] / 2})`"
     >
       <transition-group name="list-complete" tag="g">
         <text
@@ -73,7 +73,7 @@ export default {
       .on('end', (...args) => {
         this.draw(...args);
       })
-      .size([256, 256]);
+      .size(this.size);
     this.update();
   },
   computed: {
@@ -111,7 +111,8 @@ export default {
       const max = Math.max(...this.words.map((word) => parseInt(word.value)));
       const min =
         Math.min(...this.words.map((word) => parseInt(word.value))) || 1;
-      const logScales = d3.scaleLog([min, max], [4, 16]);
+      const maxSize = Math.min(...this.size) / 4;
+      const logScales = d3.scaleLog([min, max], [maxSize / 4, maxSize]);
 
       this.layout
         .stop()
