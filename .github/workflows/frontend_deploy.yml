@@ -3,9 +3,9 @@ name: frontend build and deploy
 on:
   push:
     paths:
-    - '**'
+      - '**'
     branches:
-    - develop
+      - develop
 
 jobs:
   deploy:
@@ -13,24 +13,24 @@ jobs:
     env:
       working-directory: .
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js 10.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: "10.x"
-    - name: install using npm install
-      run: npm install
-      working-directory: ${{ env.working-directory }}
-    - name: build
-      run: npm run build
-      working-directory: ${{ env.working-directory }}
-    - name: copy 404.html
-      run: |
-        cd dist
-        cp index.html 404.html
-    - name: deploy
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        personal_token: ${{ secrets.oasis }}
-        publish_dir: ./dist
-        force_orphan: true
+      - uses: actions/checkout@v1
+      - name: Use Node.js 10.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - name: install using npm install
+        run: npm install
+        working-directory: ${{ env.working-directory }}
+      - name: build
+        run: npm run build
+        working-directory: ${{ env.working-directory }}
+      - name: copy 404.html
+        run: |
+          cd dist
+          cp index.html 404.html
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.OASIS_DEPLOY_TOKEN }}
+          publish_dir: ./dist
+          force_orphan: true
