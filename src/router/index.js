@@ -16,6 +16,14 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: '/login',
+    component: Login,
+  },
+  {
+    path: '*',
+    component: Page404,
+  },
+  {
     path: '/',
     component: Layout,
     children: [
@@ -79,14 +87,6 @@ const routes = [
         },
       },
     ],
-  },
-  {
-    path: '/login',
-    component: Login,
-  },
-  {
-    path: '*',
-    component: Page404,
   },
 ];
 
