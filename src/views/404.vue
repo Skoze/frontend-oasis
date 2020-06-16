@@ -7,20 +7,20 @@ export default {
   data() {
     return {
       timeout: null,
-      time: 3
+      time: 3,
     };
   },
   mounted() {
     this.timeout = setInterval(() => {
       this.time--;
       if (this.time === 0) {
-        this.$router.push('/');
+        // this.$router.push('/');
       }
     }, 1000);
   },
   beforeDestroy() {
     clearTimeout(this.timeout);
-  }
+  },
 };
 </script>
 
