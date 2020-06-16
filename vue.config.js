@@ -11,4 +11,5 @@ module.exports = {
       '/user': option,
     },
   },
+  publicPath: process.env.BASE_URL || '/',
 };
