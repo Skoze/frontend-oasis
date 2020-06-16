@@ -1,0 +1,68 @@
+.oasis-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 201;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000a;
+  font-size: 26px;
+}
+.loading-layout {
+  width: 18em;
+  height: 6em;
+  position: relative;
+}
+.shape {
+  top: 3em;
+  width: 1em;
+  height: 1em;
+  animation: my-load 1.5s ease-in-out both infinite;
+  background-color: #1e88e5;
+  position: absolute;
+  transform-origin: 50%;
+}
+
+.shape:nth-child(1) {
+  left: 6em;
+  animation-delay: 150ms;
+}
+
+.shape:nth-child(2) {
+  left: 9em;
+  animation-delay: 300ms;
+}
+
+.shape:nth-child(3) {
+  left: 12em;
+  animation-delay: 450ms;
+}
+
+.shape:nth-child(4) {
+  left: 3em;
+}
+
+.shape:nth-child(5) {
+  left: 15em;
+  animation-delay: 600ms;
+}
+
+@keyframes my-load {
+  30% {
+    top: 3em;
+    transform: rotateY(180deg);
+  }
+  50% {
+    top: 0em;
+  }
+  70% {
+    top: 3em;
+    transform: rotateX(180deg);
+  }
+  100% {
+    transform: rotateX(180deg);
+  }
+}
